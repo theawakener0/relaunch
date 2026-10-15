@@ -95,6 +95,23 @@ function Wizard() {
     setStep("auth");
   };
 
+  const handleHome = () => {
+    const session = getSession();
+    const user = session ? getUsers()[session.email] : undefined;
+    if (session && user) {
+      setWelcome({
+        name: user.name,
+        email: session.email,
+        profile: user.profile ?? {},
+        origin: "auth",
+      });
+      setStep("welcome");
+    } else {
+      setWelcome(null);
+      setStep("auth");
+    }
+  };
+
   let content: ReactNode = null;
   if (step === "auth") {
     content = <AuthStep onSignup={handleSignup} onWelcome={handleWelcome} />;
@@ -163,7 +180,7 @@ function Wizard() {
     <>
       <Glows />
       {showOrbitRings && <Orbit />}
-      {showOrbit && <CornerLogo />}
+      <CornerLogo onHome={handleHome} step={step} />
       <main className="wrap">
         {restored ? (
           <AnimatePresence mode="wait">{section}</AnimatePresence>

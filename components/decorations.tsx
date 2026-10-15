@@ -1,4 +1,8 @@
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "motion/react";
+import type { MouseEvent } from "react";
 
 function Glows() {
   return (
@@ -34,9 +38,45 @@ function Orbit() {
   );
 }
 
-function CornerLogo() {
+type CornerLogoProps = { onHome?: () => void; step?: string };
+
+function CornerLogo({ onHome, step }: CornerLogoProps) {
+  const reduceMotion = useReducedMotion();
+
+  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    if (reduceMotion) {
+      onHome?.();
+      return;
+    }
+    const el = event.currentTarget;
+    if (el.classList.contains("logo-spinning")) return;
+    el.classList.add("logo-spinning");
+    let finished = false;
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      el.classList.remove("logo-spinning");
+      onHome?.();
+    };
+    const timer = setTimeout(finish, 650);
+    const handleAnimationEnd = () => {
+      clearTimeout(timer);
+      el.removeEventListener("animationend", handleAnimationEnd);
+      finish();
+    };
+    el.addEventListener("animationend", handleAnimationEnd);
+  }
+
   return (
-    <div className="corner-logo">
+    <motion.button
+      type="button"
+      className="corner-logo"
+      data-step={step ?? undefined}
+      aria-label="Go to home"
+      onClick={handleClick}
+      whileHover={reduceMotion ? undefined : { scale: 1.06, rotate: -4 }}
+      whileTap={reduceMotion ? undefined : { scale: 0.92 }}
+    >
       <Image
         src="/assets/logo.png"
         alt="RD Academy logo"
@@ -46,8 +86,9 @@ function CornerLogo() {
         sizes="(max-width: 640px) 14vw, 76px"
         decoding="async"
       />
-    </div>
+    </motion.button>
   );
 }
 
 export { Glows, Orbit, CornerLogo };
+export type { CornerLogoProps };
