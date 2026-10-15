@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Relaunched Academy — Education</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="3">
+  <div class="glow glow-left" aria-hidden="true"></div>
+  <div class="glow glow-right" aria-hidden="true"></div>
+  <div class="glow glow-bottom" aria-hidden="true"></div>
+
+  <svg class="orbit show" viewBox="0 0 300 300" aria-hidden="true">
+    <circle cx="260" cy="20" r="150" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="115" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="82" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="52" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="170" cy="110" r="13" fill="#cfcfcf"/>
+    <circle cx="215" cy="180" r="13" fill="#cfcfcf"/>
+    <circle cx="205" cy="70" r="13" fill="#cfcfcf"/>
+    <circle cx="275" cy="95" r="13" fill="#cfcfcf"/>
+    <circle class="orbit-glow" cx="260" cy="20" r="42" fill="#a31212"/>
+  </svg>
+
+  <div class="corner-logo">
+    <img src="assets/logo.png" srcset="assets/logo@2x.png 2x" alt="RD Academy logo" />
+  </div>
+
+  <main class="wrap">
+    <form id="form3" novalidate>
+      <div class="page-head"><h1>Education</h1><p>Tell us where you study.</p></div>
+      <div class="field" data-field="system">
+        <label for="f3sys">Educational System</label>
+        <span class="select">
+          <select id="f3sys" name="system">
+            <option value="">Educational System</option>
+            <option>American</option>
+            <option>British (IGCSE)</option>
+            <option>National</option>
+            <option>Azhar</option>
+          </select>
+        </span>
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="grade">
+        <label for="f3grade">Grade</label>
+        <span class="select">
+          <select id="f3grade" name="grade">
+            <option value="">Grade</option>
+            <option>Grade 10</option>
+            <option>Grade 11</option>
+            <option>Grade 12</option>
+            <option>University</option>
+          </select>
+        </span>
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="school">
+        <label for="f3school">High School/University Name</label>
+        <input id="f3school" name="school" type="text" autocomplete="organization" />
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="city">
+        <label for="f3city">Governorate/City</label>
+        <input id="f3city" name="city" type="text" autocomplete="address-level1" />
+        <small class="msg" hidden></small>
+      </div>
+      <div class="step3-nav">
+        <a class="arrow static with-text" href="step2.html" aria-label="Back"><span aria-hidden="true">←</span> Back</a>
+        <button type="submit" class="btn finish" id="finishBtn"><span class="label">Create account</span><span class="spinner" hidden></span></button>
+      </div>
+    </form>
+
+    <section id="welcome3" hidden>
+      <div class="card">
+        <img class="brand small" src="assets/logo.png" srcset="assets/logo@2x.png 2x" alt="RD Academy logo" />
+        <h2>Welcome<span id="doneName3"></span></h2>
+        <p id="doneSub3"></p>
+        <dl class="summary" id="summary3"></dl>
+        <div class="btn-row">
+          <button class="btn ghost" id="logoutBtn3">Log out</button>
+          <button class="btn" id="startBtn3">Start learning</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

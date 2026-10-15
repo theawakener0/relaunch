@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Relaunched Academy — Log in or Sign Up</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="1">
+  <div class="glow glow-left" aria-hidden="true"></div>
+  <div class="glow glow-right" aria-hidden="true"></div>
+  <div class="glow glow-bottom" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section id="page1">
+      <header class="hero-head">
+        <img class="brand" src="assets/logo.png" srcset="assets/logo@2x.png 2x" alt="RD Academy logo" />
+        <h1><span class="title-text">Relaunched Academy</span>
+          <img class="title-icon" src="assets/book-icon.png" alt="" aria-hidden="true" />
+        </h1>
+      </header>
+
+      <div class="books-center">
+        <img src="assets/books-hero.png" alt="Stack of red books" />
+      </div>
+
+      <form id="form1" novalidate>
+        <div class="field" data-field="name">
+          <label for="f1name">Name</label>
+          <input id="f1name" name="name" type="text" placeholder="Type your name" autocomplete="name" />
+          <small class="msg" hidden></small>
+        </div>
+        <div class="field" data-field="email">
+          <label for="f1email">Email</label>
+          <input id="f1email" name="email" type="email" placeholder="Example@gmail.com" autocomplete="email" />
+          <small class="msg" hidden></small>
+        </div>
+        <div class="btn-row">
+          <button type="submit" class="btn" id="loginBtn"><span class="label">Log in</span><span class="spinner" hidden></span></button>
+          <button type="button" class="btn has-spark" id="signupBtn"><span class="label">Sign Up</span><span class="spinner" hidden></span><img class="spark-img" src="assets/spark.png" alt="" aria-hidden="true" /></button>
+        </div>
+        <p class="hint">New here? Fill name + email and hit <b>Sign Up</b> to continue. Returning? Hit <b>Log in</b>.</p>
+      </form>
+    </section>
+
+    <section id="welcome1" hidden>
+      <div class="card">
+        <img class="brand small" src="assets/logo.png" srcset="assets/logo@2x.png 2x" alt="RD Academy logo" />
+        <h2>Welcome<span id="doneName1"></span></h2>
+        <p id="doneSub1"></p>
+        <dl class="summary" id="summary1"></dl>
+        <div class="btn-row">
+          <button class="btn ghost" id="logoutBtn1">Log out</button>
+          <button class="btn" id="startBtn1">Start learning</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>

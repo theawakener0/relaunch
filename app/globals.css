@@ -1,0 +1,843 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary: var(--primary);
+  --color-brand: var(--brand);
+  --color-focus-outline: var(--focus-outline);
+  --color-secondary-border: var(--secondary-border);
+  --color-label-foreground: var(--label-foreground);
+  --color-field: var(--field);
+  --color-placeholder-foreground: var(--placeholder-foreground);
+  --color-card-shadow-color: var(--card-shadow-color);
+  --color-success: var(--success);
+  --color-danger-border: var(--danger-border);
+  --color-toast: var(--toast);
+  --color-toast-foreground: var(--toast-foreground);
+  --color-toast-border: var(--toast-border);
+  --color-focus-halo: var(--focus-halo);
+  --color-danger-halo: var(--danger-halo);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  --text-btn: clamp(17px, 4.6vw, 22px);
+  --text-label: clamp(16px, 4.4vw, 19px);
+  --breakpoint-xs: 380px;
+}
+
+/* Light is the default so the server HTML already looks like a cream paper page
+   and next-themes only has to *add* a class. Every dark value below is the
+   original dark palette verbatim — dark must not change. */
+:root {
+  /* Cream base. The .paper layer lays the photo texture over this at 55%, so
+     every light contrast below was measured against the blended result, not
+     against this flat colour. */
+  --background: #f7f2e7;
+  --foreground: #1c1a17;
+  --card: #fffdf8;
+  --card-foreground: #1c1a17;
+  --popover: #fffdf8;
+  --popover-foreground: #1c1a17;
+  /* Vivid red — fills only (white text on #9c1a1a is 8.15:1). */
+  --primary: #9c1a1a;
+  --primary-hover: #7d1414;
+  --primary-foreground: #ffffff;
+  /* Darkened red for text/icons on paper: 7.59:1 on the blended texture. The
+     focus ring is its consumer — pure ink would read, but the brand ring keeps
+     the keyboard affordance on-identity. */
+  --brand: #7d1414;
+  --focus-outline: var(--brand);
+  --secondary: #e6dfcd;
+  --secondary-foreground: #1c1a17;
+  /* 3.17:1 on the secondary fill: the Log out button's edge has to read as a
+     boundary, not as a hairline. */
+  --secondary-border: #857a67;
+  --muted: #eae4d5;
+  --muted-foreground: #45403a;
+  --accent: #ded6c4;
+  --accent-foreground: #1c1a17;
+  --destructive: #8a1414;
+  --border: #c9bfa8;
+  /* 3.59:1 against the field fill, so the input box edge stays perceivable. */
+  --input: #8f8370;
+  --ring: #555555;
+  --label-foreground: #2b2620;
+  --field: #fdfbf5;
+  --placeholder-foreground: #6b6459;
+  --success: #1f5c36;
+  --danger-border: #8a1414;
+  --toast: #fffdf8;
+  --toast-foreground: #1c1a17;
+  --toast-border: #c9bfa8;
+  --toast-shadow: 0 16px 40px rgba(74, 69, 59, 0.18);
+  --card-shadow-color: rgba(74, 69, 59, 0.18);
+  --focus-halo: rgba(28, 26, 23, 0.07);
+  --danger-halo: rgba(138, 20, 20, 0.16);
+  /* Recolours artwork that legacy forced to pure white with a filter. */
+  --deco-ink-filter: brightness(0);
+  --glow-left: #6d0e0e;
+  --glow-right: #a31212;
+  --glow-bottom: #8f1111;
+  --deco-alpha: 1;
+  --orbit-ring: #9c1a1a;
+  --orbit-dot: #7d1414;
+  --orbit-glow: #a31212;
+  --paper-opacity: 0.55;
+  --chart-1: #9c1a1a;
+  --chart-2: #7d1414;
+  --chart-3: #45403a;
+  --chart-4: #8a7350;
+  --chart-5: #b9ad91;
+  --sidebar: #fdfbf5;
+  --sidebar-foreground: #1c1a17;
+  --sidebar-primary: #9c1a1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ded6c4;
+  --sidebar-accent-foreground: #1c1a17;
+  --sidebar-border: #c9bfa8;
+  --sidebar-ring: #555555;
+  --radius: 0.625rem;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0d0d0d;
+  --card-foreground: #ffffff;
+  --popover: #1c1c1c;
+  --popover-foreground: #ffffff;
+  --primary: #7d1414;
+  --primary-hover: #9c1a1a;
+  --primary-foreground: #ffffff;
+  --brand: #e06a6a;
+  --focus-outline: #ffffff;
+  --secondary: #1c1c1c;
+  --secondary-foreground: #ffffff;
+  --secondary-border: #333333;
+  --muted: #1c1c1c;
+  --muted-foreground: #c9c9c9;
+  --accent: #262626;
+  --accent-foreground: #ffffff;
+  --destructive: #ff8f8f;
+  --border: #262626;
+  --input: #2b2b2b;
+  --ring: #555555;
+  --label-foreground: #f2f2f2;
+  --field: #1c1c1c;
+  --placeholder-foreground: #ffffff;
+  --success: #2c6b41;
+  --danger-border: #7d2a2a;
+  --toast: #141414;
+  --toast-foreground: #ffffff;
+  --toast-border: #333333;
+  --toast-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  --card-shadow-color: rgba(0, 0, 0, 0.6);
+  --focus-halo: rgba(255, 255, 255, 0.06);
+  --danger-halo: rgba(255, 80, 80, 0.12);
+  --deco-ink-filter: brightness(0) invert(1);
+  --glow-left: #6d0e0e;
+  --glow-right: #a31212;
+  --glow-bottom: #8f1111;
+  --deco-alpha: 1;
+  --orbit-ring: #ffffff;
+  --orbit-dot: #cfcfcf;
+  --orbit-glow: #a31212;
+  --chart-1: #9c1a1a;
+  --chart-2: #7d1414;
+  --chart-3: #c9c9c9;
+  --chart-4: #555555;
+  --chart-5: #2b2b2b;
+  --sidebar: #0d0d0d;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #7d1414;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #262626;
+  --sidebar-ring: #555555;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    @apply font-sans;
+    height: 100%;
+    line-height: normal;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    position: relative;
+  }
+  img,
+  svg {
+    max-width: 100%;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus-outline);
+    outline-offset: 2px;
+  }
+}
+
+/* Paper grain — cream crumpled-paper photo behind everything, light mode only.
+   Follows the .glow pattern exactly (fixed, pointer-events: none, z-index 0,
+   content-visibility: auto) minus background-attachment: fixed, which janks on
+   iOS Safari. */
+.paper {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  max-width: 100vw;
+  content-visibility: auto;
+  background: url("/assets/paper-texture.jpg") center / cover no-repeat;
+  opacity: var(--paper-opacity);
+}
+/* Hidden rather than transparent in dark: opacity: 0 would still make the
+   browser download the 51 KB texture. */
+.dark .paper {
+  display: none;
+}
+
+/* Ambient glows — fixed red haze behind everything. The colours and the
+   overall strength both come from tokens so the light theme gets a soft
+   terracotta wash on cream instead of red-on-white mud. */
+.glow {
+  position: fixed;
+  pointer-events: none;
+  filter: blur(50px);
+  z-index: 0;
+  max-width: 100vw;
+  transform: translateZ(0);
+  will-change: opacity;
+  content-visibility: auto;
+  opacity: var(--deco-alpha);
+}
+.glow-left {
+  left: -140px;
+  top: -60px;
+  width: min(220px, 40vw);
+  height: 70vh;
+  background: radial-gradient(closest-side, var(--glow-left), transparent);
+}
+.glow-right {
+  right: -140px;
+  top: 20vh;
+  width: min(220px, 40vw);
+  height: 70vh;
+  background: radial-gradient(closest-side, var(--glow-right), transparent);
+}
+.glow-bottom {
+  left: 0;
+  right: 0;
+  bottom: -220px;
+  height: min(340px, 40vh);
+  background: radial-gradient(60% 100% at 50% 100%, var(--glow-bottom), transparent);
+  opacity: calc(var(--deco-alpha) * 0.85);
+}
+
+/* Orbit decoration (details / education) */
+.orbit {
+  position: fixed;
+  top: -40px;
+  right: -40px;
+  width: min(300px, 55vw);
+  height: auto;
+  z-index: 0;
+  opacity: 0;
+  pointer-events: none;
+  content-visibility: auto;
+}
+.orbit.show {
+  opacity: 1;
+}
+.orbit-ring {
+  fill: none;
+  stroke: var(--orbit-ring);
+  stroke-width: 1.2;
+}
+.orbit-dot {
+  fill: var(--orbit-dot);
+  stroke: var(--background);
+  stroke-width: 2;
+}
+.orbit-glow {
+  fill: var(--orbit-glow);
+  filter: blur(18px);
+}
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.orbit-spin {
+  transform-box: view-box;
+  transform-origin: 260px 20px;
+  animation: orbit-spin linear infinite;
+}
+.orbit-spin-a {
+  animation-duration: 70s;
+}
+.orbit-spin-b {
+  animation-duration: 55s;
+}
+.orbit-spin-c {
+  animation-duration: 40s;
+}
+.orbit-spin-d {
+  animation-duration: 28s;
+}
+
+/* Page shell */
+.wrap {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 24px 20px calc(90px + env(safe-area-inset-bottom));
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wrap > section,
+.wrap > form {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.wrap form {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* Field shake */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+.shake {
+  animation: shake 0.45s;
+}
+
+/* Hero lockup: red logo left, white title, tilted book superscript top-right */
+.hero-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 8px 0 6px;
+  flex-wrap: nowrap;
+  text-align: left;
+}
+.hero-head h1 {
+  font-size: clamp(26px, 5.4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  position: relative;
+  display: inline-block;
+  padding-right: 0.9em;
+  color: var(--foreground);
+}
+.hero-head .title-text {
+  white-space: nowrap;
+}
+.brand {
+  width: clamp(72px, 16vw, 104px);
+  height: auto;
+  flex: none;
+}
+.brand.small {
+  width: 88px;
+}
+.title-icon {
+  position: absolute;
+  top: -0.55em;
+  right: -0.35em;
+  width: 0.85em;
+  height: 0.85em;
+  object-fit: contain;
+  /* Legacy forced the icon white; on cream paper that vanishes, so the filter
+     itself is a token (ink in light, white in dark). */
+  filter: var(--deco-ink-filter);
+  transform: rotate(24deg);
+}
+.corner-logo {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: 16px;
+  z-index: 2;
+}
+.corner-logo img {
+  width: clamp(52px, 14vw, 76px);
+  height: auto;
+}
+/* Sits to the right of .corner-logo: clear of the logo, of the top-right orbit
+   rings and of the bottom-right hand sticker (min-width 640px only). */
+.theme-toggle {
+  position: fixed;
+  top: max(14px, env(safe-area-inset-top));
+  left: 104px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--secondary-border);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--foreground);
+  cursor: pointer;
+}
+.theme-toggle:hover {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+.books-center {
+  width: min(420px, 82vw);
+  max-width: 100%;
+  margin: 12px auto 4px;
+}
+.books-center img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 24px 40px rgba(163, 18, 18, 0.35));
+  content-visibility: auto;
+}
+
+/* Fields — margins and validation message (input/label look lives in components/ui) */
+.field {
+  display: block;
+  margin: 26px 0 0;
+}
+.msg {
+  display: block;
+  color: var(--destructive);
+  font-size: 14px;
+  margin: 8px 0 0 10px;
+}
+
+/* Buttons and navigation */
+.btn-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 26px;
+  margin-top: 32px;
+}
+.spark-img {
+  position: absolute;
+  top: -28px;
+  right: -18px;
+  width: 36px;
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+}
+.hint {
+  color: var(--muted-foreground);
+  margin: 18px 4px 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 28px;
+}
+.link {
+  background: none;
+  border: 0;
+  color: var(--muted-foreground);
+  font-size: 17px;
+  cursor: pointer;
+  text-decoration: none;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 4px;
+}
+.link:hover {
+  color: var(--foreground);
+}
+.arrow {
+  background: none;
+  border: 0;
+  color: var(--foreground);
+  font-size: clamp(34px, 9vw, 44px);
+  cursor: pointer;
+  line-height: 1;
+  padding: 6px 10px;
+  min-width: 48px;
+  min-height: 48px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.arrow:hover {
+  transform: translateX(3px);
+}
+.arrow.with-text {
+  font-size: 18px;
+  gap: 6px;
+}
+.step3-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 28px;
+  gap: 16px;
+}
+.step3-nav .arrow.static {
+  font-size: clamp(30px, 8vw, 38px);
+}
+.step3-nav .arrow.static.with-text {
+  font-size: 18px;
+}
+
+/* Field selection — "How to choose" card (base look lives in components/ui) */
+/* Left-aligned variant of the base .card, used by the "How to choose" panel.
+   Kept as a descendant of a wrapper rather than a class on <Card> so the
+   shadcn primitive itself is not restyled. */
+.pick-wrap {
+  text-align: left;
+}
+.pick-wrap .pick-list {
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pick-list-item {
+  color: var(--muted-foreground);
+  font-size: 15px;
+  line-height: 1.5;
+}
+.pick-list-lead {
+  color: var(--foreground);
+  font-weight: 700;
+}
+.pick-list-tail {
+  color: var(--muted-foreground);
+}
+.pick-label {
+  display: block;
+  color: var(--label-foreground);
+  font-size: var(--text-label);
+  margin: 26px 0 10px 2px;
+}
+.pick-option-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: var(--foreground);
+}
+/* Field questions — full-colour art pinned right of the form, vertically
+   centred. No ink filter: the artwork ships in its own colours. */
+.questions-art {
+  position: fixed;
+  top: 50%;
+  right: max(24px, 3vw);
+  transform: translateY(-50%);
+  height: auto;
+  max-height: 78dvh;
+  width: min(340px, 30vw);
+  max-width: 30vw;
+  object-fit: contain;
+  object-position: right center;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 24px 40px rgba(74, 69, 59, 0.25));
+  content-visibility: auto;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+.questions-art[data-loaded="true"] {
+  opacity: 1;
+}
+@media (max-width: 900px) {
+  .questions-art { display: none; }
+}
+/* Nuclear art bleeds to the viewport edges with a faded base. */
+.questions-art[data-field="Nuclear Science"] {
+  top: 0;
+  right: 0;
+  transform: none;
+  height: 115dvh;
+  max-height: none;
+  width: min(600px, 50vw);
+  max-width: 50vw;
+  object-position: right top;
+  -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 92%);
+  mask-image: linear-gradient(to bottom, black 65%, transparent 92%);
+}
+/* Astronomy art — bigger, flush to the far right edge. */
+.questions-art[data-field="Astronomy"] {
+  right: 0;
+  width: min(520px, 44vw);
+  max-width: 44vw;
+  max-height: 92dvh;
+}
+/* AI art — bigger, flush to the far right edge. */
+.questions-art[data-field="AI & Machine Learning"] {
+  right: 0;
+  width: min(560px, 46vw);
+  max-width: 46vw;
+  max-height: 85dvh;
+}
+/* Bio art — bigger, parked far top-right where the orbit sat. */
+.questions-art[data-field="Biotechnology & Bioinformatics"] {
+  top: 0;
+  right: 0;
+  transform: none;
+  width: min(420px, 36vw);
+  max-width: 36vw;
+  max-height: 60dvh;
+  object-position: right top;
+}
+
+/* Step heading */
+.page-head {
+  text-align: center;
+  margin: 6px 0 4px;
+}
+.page-head h1,
+.page-head h2 {
+  font-size: clamp(24px, 5vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+.page-head p {
+  color: var(--muted-foreground);
+  margin-top: 6px;
+  font-size: 15px;
+}
+
+/* Success card (base look lives in components/ui/card) */
+.card h2 {
+  font-size: clamp(22px, 6vw, 30px);
+  font-weight: 700;
+  margin: 14px 0 8px;
+  line-height: 1.2;
+}
+.card p {
+  color: var(--muted-foreground);
+  overflow-wrap: anywhere;
+}
+.summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  text-align: left;
+  margin: 24px auto 0;
+  max-width: 440px;
+  font-size: 15px;
+}
+.summary dt {
+  color: var(--muted-foreground);
+}
+.summary dd {
+  color: var(--foreground);
+  overflow-wrap: anywhere;
+}
+
+/* Toast — legacy look on top of sonner's styled toasts. The body colours come
+   from the Toaster's own CSS vars (see components/ui/sonner.tsx); only the
+   per-toast geometry, shadow and the ok/bad edge accents live here. */
+[data-sonner-toast][data-styled].toast-ok,
+[data-sonner-toast][data-styled].toast-bad {
+  width: max-content;
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  box-shadow: var(--toast-shadow);
+  max-width: min(520px, calc(100vw - 32px));
+}
+[data-sonner-toast][data-styled].toast-ok {
+  border-color: var(--success);
+}
+[data-sonner-toast][data-styled].toast-bad {
+  border-color: var(--danger-border);
+}
+
+/* Sonner's fixed 356px box is centered, but width:max-content toasts anchor
+   left inside it — pin both edges and center with margins. Never transform:
+   sonner drives swiping/enter through it. */
+@media (min-width: 600px) {
+  [data-sonner-toast][data-styled].toast-ok,
+  [data-sonner-toast][data-styled].toast-bad {
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+  }
+}
+
+/* Sonner sets these offsets via inline style, so !important is required; keeps
+   toasts clear of the iPhone home-indicator safe area. */
+[data-sonner-toaster] {
+  --offset-bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+  --mobile-offset-bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    padding: 20px 16px calc(40px + env(safe-area-inset-bottom));
+  }
+  .hero-head {
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+  .hero-head h1 {
+    justify-content: center;
+    text-align: center;
+  }
+  .btn-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .orbit.show {
+    width: 180px;
+    opacity: 0.55;
+  }
+  .field {
+    margin: 22px 0 0;
+  }
+  .hint {
+    font-size: 14px;
+  }
+  .corner-logo {
+    left: 14px;
+  }
+  .theme-toggle {
+    left: 102px;
+  }
+  .step3-nav {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .step3-nav .arrow.static {
+    align-self: flex-start;
+  }
+  .card .btn-row {
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 559px) {
+  [data-sonner-toast][data-styled].toast-ok,
+  [data-sonner-toast][data-styled].toast-bad {
+    width: calc(100vw - 32px);
+  }
+}
+
+@media (max-width: 420px) {
+  .summary {
+    grid-template-columns: 1fr;
+    gap: 2px 0;
+  }
+  .summary dt {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-head {
+    gap: 10px;
+  }
+  .hero-head h1 {
+    font-size: clamp(22px, 7vw, 26px);
+  }
+  .hero-head .title-text {
+    white-space: normal;
+  }
+  .books-center {
+    width: min(280px, 78vw);
+  }
+  [data-sonner-toast][data-styled].toast-ok,
+  [data-sonner-toast][data-styled].toast-bad {
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

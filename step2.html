@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Relaunched Academy — Your details</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="2">
+  <div class="glow glow-left" aria-hidden="true"></div>
+  <div class="glow glow-right" aria-hidden="true"></div>
+  <div class="glow glow-bottom" aria-hidden="true"></div>
+
+  <svg class="orbit show" viewBox="0 0 300 300" aria-hidden="true">
+    <circle cx="260" cy="20" r="150" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="115" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="82" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="260" cy="20" r="52" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <circle cx="170" cy="110" r="13" fill="#cfcfcf"/>
+    <circle cx="215" cy="180" r="13" fill="#cfcfcf"/>
+    <circle cx="205" cy="70" r="13" fill="#cfcfcf"/>
+    <circle cx="275" cy="95" r="13" fill="#cfcfcf"/>
+    <circle class="orbit-glow" cx="260" cy="20" r="42" fill="#a31212"/>
+  </svg>
+
+  <div class="corner-logo">
+    <img src="assets/logo.png" srcset="assets/logo@2x.png 2x" alt="RD Academy logo" />
+  </div>
+
+  <main class="wrap">
+    <form id="form2" novalidate>
+      <div class="page-head"><h1>Your details</h1><p>Tell us how to reach you.</p></div>
+      <div class="field" data-field="name">
+        <label for="f2name">Name</label>
+        <input id="f2name" name="name" type="text" placeholder="Type your name" autocomplete="name" />
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="email">
+        <label for="f2email">Email</label>
+        <input id="f2email" name="email" type="email" placeholder="Example@gmail.com" autocomplete="email" />
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="phone">
+        <label for="f2phone">Number</label>
+        <input id="f2phone" name="phone" type="tel" placeholder="Ex:+20" autocomplete="tel" />
+        <small class="msg" hidden></small>
+      </div>
+      <div class="field" data-field="gender">
+        <label for="f2gender">Gender</label>
+        <span class="select">
+          <select id="f2gender" name="gender">
+            <option value="">Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+        </span>
+        <small class="msg" hidden></small>
+      </div>
+      <div class="row-between">
+        <a class="link" href="index.html">← Back</a>
+        <button type="button" class="btn arrow-btn" id="to3" aria-label="Continue">Continue <span aria-hidden="true">→</span></button>
+      </div>
+    </form>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
